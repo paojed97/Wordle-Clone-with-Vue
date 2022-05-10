@@ -1,11 +1,28 @@
 <template>
   <div class="app">
     <h1>Wordle</h1>
+    <div v-if="solution">Solution is {{ solution }}</div>
   </div>
 </template>
 
-<!-- <script>
-</script> -->
+<script>
+export default {
+  data() {
+    return {
+      solution: null,
+    };
+  },
+  mounted() {
+    fetch("http://localhost:3000/solutions")
+      .then((res) => res.json())
+      .then((json) => {
+        // random int between 0 & 14
+        const randomSolution = json[Math.floor(Math.random() * json.length)];
+        this.solution = randomSolution.word;
+      });
+  },
+};
+</script>
 
 <style>
 body {
