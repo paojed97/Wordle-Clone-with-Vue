@@ -1,12 +1,15 @@
 <template>
   <div class="app">
     <h1>Wordle</h1>
-    <div v-if="solution">Solution is {{ solution }}</div>
+    <WordleComponent v-if="solution" :solution="solution" />
   </div>
 </template>
 
 <script>
+import WordleComponent from "./components/WordleComponent.vue";
+
 export default {
+  components: { WordleComponent },
   data() {
     return {
       solution: null,
