@@ -16,8 +16,8 @@
       "scripthost"
     ]
   },
-  "vueCompilerOptions": {
-    // "experimentalDisableTemplateSupport": true,
-    // "experimentalShamefullySupportOptionsApi": false
-  }
+  // "vueCompilerOptions": {
+  //   "experimentalDisableTemplateSupport": true,
+  //   "experimentalShamefullySupportOptionsApi": false
+  // }
 }

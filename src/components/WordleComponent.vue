@@ -1,16 +1,20 @@
 <template>
   <div>current guess - {{ currentGuess }}</div>
+  <GridComponent :currentGuess="currentGuess" :guesses="guesses" :turn="turn" />
 </template>
 
 <script>
+import GridComponent from "./GridComponent.vue";
+
 export default {
+  components: { GridComponent },
   props: ["solution"],
   data() {
     return {
       turn: 0,
       currentGuess: "",
-      guesses: [...Array(6)], // each guess is an array
-      history: [], // each guess is a string
+      guesses: [...Array(6)],
+      history: [],
       isCorrect: false,
     };
   },
@@ -22,7 +26,6 @@ export default {
       let formattedGuess = [...this.currentGuess].map((l) => {
         return { key: l, color: "grey" };
       });
-
       // find any green letters (letters in solution & correct position)
       formattedGuess.forEach((l, i) => {
         if (solutionArray[i] === l.key) {
@@ -30,7 +33,6 @@ export default {
           solutionArray[i] = null;
         }
       });
-
       // find any yellow letters (letters in solution but not in correct position)
       formattedGuess.forEach((l, i) => {
         if (solutionArray.includes(l.key) && l.color !== "green") {
@@ -38,10 +40,8 @@ export default {
           solutionArray[solutionArray.indexOf(l.key)] = null;
         }
       });
-
       return formattedGuess;
     },
-
     // add a new guess to the guesses state
     // update the isCorrect state if the guess is correct
     // add one turn to the state
@@ -52,12 +52,10 @@ export default {
       let newGuesses = [...this.guesses];
       newGuesses[this.turn] = formattedGuess;
       this.guesses = newGuesses;
-
       this.history = [...this.history, this.currentGuess];
       this.turn += 1;
       this.currentGuess = "";
     },
-
     // handle keyup event & track current guess
     // if user presses enter, add the new guess
     handleKeyUp({ key }) {
@@ -67,28 +65,23 @@ export default {
           console.log("You used all your guesses");
           return;
         }
-
         // do not allow duplicate words
         if (this.history.includes(this.currentGuess)) {
           console.log("You already tried that word");
           return;
         }
-
         // check word is 5 characters long
         if (this.currentGuess.length !== 5) {
           console.log("Word must be 5 characters long");
           return;
         }
-
         const formatted = this.formatGuess();
         this.addNewGuess(formatted);
       }
-
       if (key === "Backspace") {
         this.currentGuess = this.currentGuess.slice(0, -1);
         return;
       }
-
       if (/^[a-zA-z]$/.test(key)) {
         if (this.currentGuess.length < 5) {
           this.currentGuess += key;
@@ -98,7 +91,6 @@ export default {
   },
   mounted() {
     window.addEventListener("keyup", this.handleKeyUp);
-
     return () => window.removeEventListener("keyup", this.handleKeyUp);
   },
 };
