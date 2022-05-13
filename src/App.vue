@@ -34,7 +34,7 @@ body {
   font-size: 1em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
-  color: white;
+  color: #eee;
 }
 
 h1 {

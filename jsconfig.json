@@ -14,10 +14,6 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
   },
-  // "vueCompilerOptions": {
-  //   "experimentalDisableTemplateSupport": true,
-  //   "experimentalShamefullySupportOptionsApi": false
-  // }
 }

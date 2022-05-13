@@ -1,13 +1,15 @@
 <template>
   <div>current guess - {{ currentGuess }}</div>
   <GridComponent :currentGuess="currentGuess" :guesses="guesses" :turn="turn" />
+  <KeypadComponent :usedKeys="usedKeys" />
 </template>
 
 <script>
 import GridComponent from "./GridComponent.vue";
+import KeypadComponent from "./KeypadComponent.vue";
 
 export default {
-  components: { GridComponent },
+  components: { GridComponent, KeypadComponent },
   props: ["solution"],
   data() {
     return {
@@ -16,6 +18,7 @@ export default {
       guesses: [...Array(6)],
       history: [],
       isCorrect: false,
+      usedKeys: {},
     };
   },
   methods: {
@@ -49,11 +52,37 @@ export default {
       if (this.currentGuess === this.solution) {
         this.isCorrect = true;
       }
+
       let newGuesses = [...this.guesses];
       newGuesses[this.turn] = formattedGuess;
       this.guesses = newGuesses;
+
       this.history = [...this.history, this.currentGuess];
       this.turn += 1;
+
+      let newKeys = { ...this.usedKeys };
+      formattedGuess.forEach((l) => {
+        const currentColor = newKeys[l.key];
+
+        if (l.color === "green") {
+          newKeys[l.key] = "green";
+        }
+
+        if (l.color === "yellow" && currentColor !== "green") {
+          newKeys[l.key] = "yellow";
+        }
+
+        if (
+          l.color === "grey" &&
+          currentColor !== "green" &&
+          currentColor !== "yellow"
+        ) {
+          newKeys[l.key] = "grey";
+        }
+
+        this.usedKeys = newKeys;
+      });
+
       this.currentGuess = "";
     },
     // handle keyup event & track current guess
