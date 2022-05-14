@@ -1,19 +1,45 @@
 {
-  "letters": [
+  "topKeys": [
+    {
+      "key": "q"
+    },
+    {
+      "key": "w"
+    },
+    {
+      "key": "e"
+    },
+    {
+      "key": "r"
+    },
+    {
+      "key": "t"
+    },
+    {
+      "key": "y"
+    },
+    {
+      "key": "u"
+    },
+    {
+      "key": "i"
+    },
+    {
+      "key": "o"
+    },
+    {
+      "key": "p"
+    }
+  ],
+  "middleKeys": [
     {
       "key": "a"
     },
     {
-      "key": "b"
-    },
-    {
-      "key": "c"
+      "key": "s"
     },
     {
       "key": "d"
-    },
-    {
-      "key": "e"
     },
     {
       "key": "f"
@@ -25,9 +51,6 @@
       "key": "h"
     },
     {
-      "key": "i"
-    },
-    {
       "key": "j"
     },
     {
@@ -35,48 +58,29 @@
     },
     {
       "key": "l"
-    },
+    }
+  ],
+  "bottomKeys": [
     {
-      "key": "m"
-    },
-    {
-      "key": "n"
-    },
-    {
-      "key": "o"
-    },
-    {
-      "key": "p"
-    },
-    {
-      "key": "q"
-    },
-    {
-      "key": "r"
-    },
-    {
-      "key": "s"
-    },
-    {
-      "key": "t"
-    },
-    {
-      "key": "u"
-    },
-    {
-      "key": "v"
-    },
-    {
-      "key": "w"
+      "key": "z"
     },
     {
       "key": "x"
     },
     {
-      "key": "y"
+      "key": "c"
     },
     {
-      "key": "z"
+      "key": "v"
+    },
+    {
+      "key": "b"
+    },
+    {
+      "key": "n"
+    },
+    {
+      "key": "m"
     }
   ],
   "solutions": [

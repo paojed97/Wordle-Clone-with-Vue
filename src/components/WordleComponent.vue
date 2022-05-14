@@ -1,15 +1,21 @@
 <template>
-  <div>current guess - {{ currentGuess }}</div>
   <GridComponent :currentGuess="currentGuess" :guesses="guesses" :turn="turn" />
   <KeypadComponent :usedKeys="usedKeys" />
+  <ModalComponent
+    v-if="showModal"
+    :isCorrect="isCorrect"
+    :turn="turn"
+    :solution="solution"
+  />
 </template>
 
 <script>
 import GridComponent from "./GridComponent.vue";
 import KeypadComponent from "./KeypadComponent.vue";
+import ModalComponent from "./ModalComponent.vue";
 
 export default {
-  components: { GridComponent, KeypadComponent },
+  components: { GridComponent, KeypadComponent, ModalComponent },
   props: ["solution"],
   data() {
     return {
@@ -19,6 +25,7 @@ export default {
       history: [],
       isCorrect: false,
       usedKeys: {},
+      showModal: false,
     };
   },
   methods: {
@@ -120,7 +127,19 @@ export default {
   },
   mounted() {
     window.addEventListener("keyup", this.handleKeyUp);
-    return () => window.removeEventListener("keyup", this.handleKeyUp);
+
+    () => window.removeEventListener("keyup", this.handleKeyUp);
+  },
+  updated() {
+    if (this.isCorrect) {
+      setTimeout(() => (this.showModal = true), 2000);
+      window.removeEventListener("keyup", this.handleKeyUp);
+    }
+
+    if (this.turn > 5) {
+      setTimeout(() => (this.showModal = true), 2000);
+      window.removeEventListener("keyup", this.handleKeyUp);
+    }
   },
 };
 </script>
